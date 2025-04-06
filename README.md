@@ -84,10 +84,7 @@ server/ ├── controllers/ │ ├── authController.js │ ├── car
 ```bash
 git clone https://github.com/your-username/zeal-fashion.git
 cd zeal-fashion
-### 2. Setup Backend
-cd server
-npm install
-# Create a .env file and add your MongoDB URI and JWT_SECRET
-npm run dev
+
+
 
 
