@@ -15,8 +15,8 @@ If you are developing a production application, we recommend using TypeScript an
 # zealfashion
 e commerce website
 >>>>>>> b64a0458858655a894bd99ca4588f7bbc1a2cfd6
-## 🖼️ Demo 
-### 🏠 Home Page
+Demo 
+ Home Page
 
 ![Demo1](./src/assets/Demo1.png)
 ![Demo3](./src/assets/Demo3.png)
