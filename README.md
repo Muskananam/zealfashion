@@ -16,9 +16,10 @@ If you are developing a production application, we recommend using TypeScript an
 e commerce website
 >>>>>>> b64a0458858655a894bd99ca4588f7bbc1a2cfd6
 ## 🖼️ Demo 
-
 ### 🏠 Home Page
-(./src/assets/Screenshot(140).png)
-(./src/assets/Screenshot(141).png)
-(./src/assets/Screenshot(142).png)
+
+![Screenshot 140](./src/assets/Screenshot(140).png)
+![Screenshot 141](./src/assets/Screenshot(141).png)
+![Screenshot 142](./src/assets/Screenshot(142).png)
+
 
