@@ -24,4 +24,70 @@ e commerce website
 ![Demo2](./src/assets/Demo2.png)
 ![Demo4](./src/assets/Demo4.png)
 
+#  Zeal Fashion – E-Commerce Website (MERN Stack)
+
+**Zeal Fashion** is a full-stack e-commerce web application built using the **MERN stack** (MongoDB, Express.js, React.js, Node.js). This platform allows users to browse products, add them to a cart, and place orders with a smooth multi-step checkout process.
+
+---
+
+## 🧩 Tech Stack
+
+- **Frontend**: React.js, JSX, Tailwind CSS (or plain CSS)
+- **Backend**: Node.js, Express.js
+- **Database**: MongoDB
+- **Other Tools**: Axios, React Router, Postman (for API testing)
+
+---
+
+## ✨ Features
+
+### 🌐 Frontend
+
+- Responsive design with reusable components
+- **Home Page** – Landing page for the website
+- **Products Page** – View all products
+  - Add to Cart functionality (stores in MongoDB)
+- **Cart Page** – Displays user’s cart items from DB
+- **Authentication** – Signin and Signup forms
+
+### ⚙️ Backend
+
+- REST API built with Express.js
+- MongoDB used for:
+  - Storing users, products, and cart data
+- Routes for:
+  - `POST /auth/signup`
+  - `POST /auth/signin`
+  - `POST /cart/add`
+  - `GET /cart/:userId`
+
+---
+
+## 🗂️ Project Structure
+
+### 📁 Frontend – `client/`
+
+client/ ├── components/ │ ├── Navbar.jsx │ ├── Footer.jsx │ └── ProductCard.jsx ├── pages/ │ ├── Home.jsx │ ├── Products.jsx │ ├── CartPage.jsx │ ├── Signin.jsx │ ├── Signup.jsx │ └── BuyNowSteps/ │ ├── Address.jsx │ ├── Payment.jsx │ └── ConfirmOrder.jsx ├── App.jsx └── index.js
+
+
+### 📁 Backend – `server/`
+
+server/ ├── controllers/ │ ├── authController.js │ ├── cartController.js │ └── orderController.js ├── models/ │ ├── User.js │ ├── Product.js │ ├── Cart.js │ └── Order.js ├── routes/ │ ├── authRoutes.js │ ├── cartRoutes.js │ └── orderRoutes.js ├── config/ │ └── db.js ├── server.js └── .env
+
+
+---
+
+## 🔌 Installation & Setup
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/your-username/zeal-fashion.git
+cd zeal-fashion
+### 2. Setup Backend
+cd server
+npm install
+# Create a .env file and add your MongoDB URI and JWT_SECRET
+npm run dev
+
 
