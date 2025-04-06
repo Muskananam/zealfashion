@@ -82,7 +82,7 @@ server/ ├── controllers/ │ ├── authController.js │ ├── car
 ### 1. Clone the Repository
 
 
-git clone https://github.com/your-username/zeal-fashion.git
+git clone https://github.com/Muskananam/zeal-fashion.git
 cd zeal-fashion
 
 ### 2. Setup Backend
@@ -103,5 +103,17 @@ POST	/cart/add	Add product to cart
 GET	/cart/:userId	Get user’s cart
 POST	/order/buy-now	Place a new order
 
+## 🚀 Future Enhancements
+Admin dashboard for product and order management
+User profile and order history
+Wishlist feature
+Search and category filters
+
+## 👨‍💻 Author
+Made with ❤️ by [Muskan ]
+Email: [mb84338433@gmail.com]
+Project: Zeal Fashion
+## 📬 Contact
+For queries or contributions, feel free to contact [mb84338433@gmail.com].
 
 
