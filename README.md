@@ -32,7 +32,7 @@ e commerce website
 
 ## 🧩 Tech Stack
 
-- **Frontend**: React.js, JSX, Tailwind CSS (or plain CSS)
+- **Frontend**: React.js, JSX, vite (or plain CSS)
 - **Backend**: Node.js, Express.js
 - **Database**: MongoDB
 - **Other Tools**: Axios, React Router, Postman (for API testing)
