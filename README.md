@@ -18,8 +18,9 @@ e commerce website
 ## 🖼️ Demo 
 ### 🏠 Home Page
 
-![Screenshot 140](./src/assets/Screenshot(140).png)
-![Screenshot 141](./src/assets/Screenshot(141).png)
-![Screenshot 142](./src/assets/Screenshot(142).png)
+![Demo1](./src/assets/Demo1.png)
+![Demo3](./src/assets/Demo3.png)
+![Demo2](./src/assets/Demo2.png)
+![Demo4](./src/assets/Demo4.png)
 
 
