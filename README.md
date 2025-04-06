@@ -81,10 +81,27 @@ server/ ├── controllers/ │ ├── authController.js │ ├── car
 
 ### 1. Clone the Repository
 
-```bash
+
 git clone https://github.com/your-username/zeal-fashion.git
 cd zeal-fashion
 
+### 2. Setup Backend
+cd server
+npm install
+# Create a .env file and add your MongoDB URI and JWT_SECRET
+npm run dev
+### 3. Setup Frontend
+cd ../client
+npm install
+npm run dev
+
+## 📬 API Endpoints (Backend)
+Method	Endpoint	Description
+POST	/auth/signup	Register a new user
+POST	/auth/signin	Authenticate user
+POST	/cart/add	Add product to cart
+GET	/cart/:userId	Get user’s cart
+POST	/order/buy-now	Place a new order
 
 
 
