@@ -1,0 +1,53 @@
+.container {
+  padding: 40px 20px;
+}
+
+h2 {
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 18px;
+  color: #555;
+}
+
+/* Card Styling */
+.card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+  font-size: 20px;
+  font-weight: 500;
+  color: #222;
+}
+
+.card-text {
+  font-size: 16px;
+  color: #444;
+}
+
+/* Button spacing */
+.btn {
+  min-width: 120px;
+  font-weight: 500;
+}
+
+.btn + .btn {
+  margin-left: 10px;
+}
+
+/* Responsive image */
+.img-fluid {
+  max-height: 150px;
+  object-fit: cover;
+  border-radius: 10px 0 0 10px;
+}

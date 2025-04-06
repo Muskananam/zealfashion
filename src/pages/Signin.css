@@ -1,0 +1,21 @@
+.auth-page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f8f9fa;
+  }
+  
+  .card {
+    max-width: 500px;
+    width: 100%;
+    border-radius: 10px;
+  }
+  
+  .btn {
+    transition: 0.3s;
+  }
+  
+  .btn:hover {
+    transform: scale(1.05);
+  }

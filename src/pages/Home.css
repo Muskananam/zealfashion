@@ -1,0 +1,195 @@
+/*  Carousel */
+.carousel-item img {
+  object-fit: cover;
+  height: 500px;
+  transition: transform 1s ease-in-out; /* Smooth transition for image movement */
+}
+
+/* Add smooth transition for the carousel itself */
+.carousel-inner {
+  transition: transform 1s ease-in-out;
+}
+
+/*  Category Cards */
+.category-card {
+  transition: transform 0.3s;
+  border: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.category-card:hover {
+  transform: scale(1.05);
+}
+
+.category-card img {
+  width: 100%;
+  height: 150px;    /* Consistent image height */
+  object-fit: cover;
+  border-bottom: 1px solid #ddd;
+}
+
+.category-card .card-body {
+  padding: 15px;
+  background: #f8f9fa;
+}
+
+.category-card .card-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin: 10px 0;
+}
+
+.category-card .btn {
+  font-size: 14px;
+  padding: 5px 10px;
+}
+
+/* Small Categories Section */
+.small-categories-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  padding: 50px 30px;
+  background: hsl(309, 6%, 76%);
+}
+
+.small-category-card {
+  display: flex;
+  flex-direction: column;   /* ✅ Name below the image */
+  align-items: center;
+  text-decoration: none;
+  color: #333;
+  transition: transform 0.3s;
+}
+
+.small-category-card img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  border-radius: 50px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.small-category-card span {
+  margin-top: 10px;          /* ✅ Space between image and name */
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.small-category-card:hover {
+  transform: scale(1.1);     /* Hover effect */
+}
+
+/* 🛒 Large Categories Section */
+.card img {
+  height: 250px;
+  object-fit: cover;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: hsl(322, 61%, 55%);
+}
+
+.card:hover {
+  transform: scale(1.05);
+  transition: 0.3s;
+}
+
+/* 🔥 Sales Products Section with Different Colors */
+.sales-card {
+  transition: transform 0.3s, box-shadow 0.3s;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  color: #fff;
+  padding: 20px;
+}
+
+/*  Different background colors for each product */
+.sales-card:nth-child(1) {
+  background: hsl(329, 70%, 55%);   /* Red */
+}
+
+.sales-card:nth-child(2) {
+  background: #4CAF50;   /* Green */
+}
+
+.sales-card:nth-child(3) {
+  background: #ce2d4d;   /* Yellow */
+}
+
+.sales-card:nth-child(4) {
+  background: #42A5F5;   /* Blue */
+}
+
+.sales-card:nth-child(5) {
+  background: rgb(214, 51, 132);   /* Purple */
+}
+
+.sales-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.sales-card .card-title {
+  font-size: 25px;
+  font-weight: bold;
+  color: #040e33;
+  margin-bottom: 10px;
+}
+
+.sales-card .price {
+  font-size: 30px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.sales-card .discount {
+  color: #000;           /* Black color for discount text */
+  font-weight: bold;
+  background: #6ea02c;   /* Yellow badge */
+  padding: 5px 10px;
+  border-radius: 5px;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.sales-card .btn {
+  margin-top: 15px;
+  padding: 10px 20px;
+  font-size: 14px;
+  color: #333;
+  background: #fff;  /* White button */
+  border: none;
+  transition: background 0.3s, color 0.3s;
+}
+
+.sales-card .btn:hover {
+  background: #333;
+  color: #fff;
+}
+/* Add spacing below carousel */
+.carousel {
+  margin-bottom: 40px;  /* You can adjust this value */
+}
+
+/* OR add spacing above small categories */
+.small-categories-container {
+  margin-top: 40px;  /* Optional, can use this instead of or with carousel margin */
+}
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000; /* Keeps it above other elements */
+  background-color: #fff; /* Or your navbar bg */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow */
+}

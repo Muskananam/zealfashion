@@ -1,0 +1,16 @@
+.not-found {
+  text-align: center;
+  padding: 50px;
+  color: #333;
+  font-family: Arial, sans-serif;
+}
+
+.not-found h2 {
+  font-size: 2rem;
+  color: #ff6347; /* Tomato color */
+}
+
+.not-found p {
+  font-size: 1.2rem;
+  color: #555;  /* ✅ Fixed color property */
+}
