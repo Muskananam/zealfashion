@@ -14,18 +14,22 @@ function Signup() {
     e.preventDefault();
 
     try {
+      const trimmedName = name.trim();
+      const trimmedEmail = email.trim().toLowerCase(); // lowercase + trim
+      const trimmedPassword = password.trim();
+
       // Send data to backend
       const response = await axios.post("http://localhost:3000/signup", {
-        name,
-        email,
-        password,
+        name: trimmedName,
+        email: trimmedEmail,
+        password: trimmedPassword,
       });
 
-      console.log("✅ Signup successful:", response.data);
+      console.log(" Signup successful:", response.data);
       alert("Signup successful!");
       navigate("/signin");
     } catch (error) {
-      console.error("❌ Signup failed:", error.response?.data || error.message);
+      console.error(" Signup failed:", error.response?.data || error.message);
       alert(error.response?.data?.error || "Signup failed. Try again.");
     }
   };
