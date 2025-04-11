@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom'; //  Added useNavigate
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import logo from '../assets/logo.jpg';
@@ -7,22 +7,25 @@ import { FaShoppingCart, FaHome, FaUserPlus, FaSearch } from 'react-icons/fa';
 
 function Navbar() {
   const [search, setSearch] = useState('');
+  const navigate = useNavigate(); //  Hook to navigate programmatically
 
   const handleSearch = (e) => {
     e.preventDefault();
-    console.log('Searching for:', search);
+    if (search.trim()) {
+      navigate(`/products?search=${encodeURIComponent(search.trim())}`); //  Navigate with query
+    }
   };
 
   return (
     <nav
-      className="navbar navbar-expand-lg w-100"
+      className="navbar navbar-expand-lg w-100 fixed-top"
       style={{
         background: 'linear-gradient(to right, #f72585, #b5179e)',
         padding: '0.75rem 1rem',
+        zIndex: 1000,
       }}
     >
       <div className="container-fluid">
-        {/* Brand */}
         <NavLink
           className="navbar-brand"
           to="/"
@@ -36,7 +39,6 @@ function Navbar() {
           ZEAL FASHION
         </NavLink>
 
-        {/* Toggler */}
         <button
           className="navbar-toggler"
           type="button"
@@ -49,9 +51,7 @@ function Navbar() {
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        {/* Collapsible Content */}
         <div className="collapse navbar-collapse" id="navbarNav">
-          {/* Links */}
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <NavLink className="nav-link text-white d-flex align-items-center" to="/">
@@ -77,7 +77,6 @@ function Navbar() {
             </li>
           </ul>
 
-          {/* Search Input with Icon inside */}
           <form className="d-flex me-3 position-relative" onSubmit={handleSearch}>
             <span
               className="position-absolute"
@@ -96,7 +95,6 @@ function Navbar() {
             />
           </form>
 
-          {/* Signup */}
           <NavLink
             to="/signup"
             className="d-flex align-items-center text-decoration-none"
