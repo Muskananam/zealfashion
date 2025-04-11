@@ -12,7 +12,7 @@ const port = process.env.PORT || 3000;
 
 // Import modular routes
 const orderRoutes = require('./Routes/OrderRoutes');
-const cartRoutes = require('./Routes/cart'); // ✅ import cart routes
+const cartRoutes = require('./Routes/cart'); // import cart routes
 
 // Middleware
 app.use(cors());
@@ -20,7 +20,7 @@ app.use(express.json());
 
 // Use modular route files
 app.use('/api/orders', orderRoutes);
-app.use('/api/cart', cartRoutes); // ✅ mount cart routes under /api/cart
+app.use('/api/cart', cartRoutes); //  mount cart routes under /api/cart
 
 // ---------------------- AUTH ROUTES ----------------------
 
