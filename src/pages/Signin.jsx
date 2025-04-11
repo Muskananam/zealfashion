@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios"; // ✅ Import axios for backend call
+import axios from "axios";
 import "./Signin.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -13,18 +13,21 @@ function Signin() {
     e.preventDefault();
 
     try {
+      const trimmedEmail = email.trim().toLowerCase(); //  normalize email
+      const trimmedPassword = password.trim();
+
       const response = await axios.post("http://localhost:3000/signin", {
-        email,
-        password,
+        email: trimmedEmail,
+        password: trimmedPassword,
       });
 
-      // ✅ Save email in localStorage
+      //  Save user email to localStorage
       localStorage.setItem("userEmail", response.data.user.email);
 
-      console.log("Email:", email, "Password:", password);
+      console.log(" Signed in:", trimmedEmail);
       navigate("/");
     } catch (error) {
-      console.error("Signin failed:", error.response?.data?.error || error.message);
+      console.error(" Signin failed:", error.response?.data?.error || error.message);
       alert("Invalid credentials or server error");
     }
   };
@@ -65,7 +68,7 @@ function Signin() {
 
             <div className="text-center mt-3">
               <p>
-                Don't have an account? <a href="/signup">Sign Up</a>
+                Don&apos;t have an account? <a href="/signup">Sign Up</a>
               </p>
             </div>
           </form>
