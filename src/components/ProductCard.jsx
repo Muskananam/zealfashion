@@ -1,13 +1,15 @@
 import React from 'react';
-import axios from 'axios'; // ✅ Import axios for HTTP requests
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-function ProductCard({ product, addToCart, buyNow }) {
-  // ✅ Function to call backend API
+function ProductCard({ product, addToCart }) {
+  const navigate = useNavigate();
+
+  const userEmail = localStorage.getItem("userEmail") || "guest@example.com";
+
+  //  Add product to cart (backend + frontend)
   const handleAddToCart = async () => {
     try {
-      const userEmail = localStorage.getItem("userEmail") || "guest@example.com"; // Get email
-
-      // Call the backend API to save the product to MongoDB
       const response = await axios.post("http://localhost:3000/cart", {
         productId: product._id,
         productName: product.name,
@@ -16,10 +18,28 @@ function ProductCard({ product, addToCart, buyNow }) {
         email: userEmail,
       });
 
-      console.log("✅ Product added to cart in backend:", response.data);
-      addToCart(product); // Call frontend cart function too
+      console.log(" Product added to cart in backend:", response.data);
+      addToCart(product); // frontend state update
     } catch (error) {
-      console.error("❌ Error adding to cart in backend:", error);
+      console.error(" Error adding to cart in backend:", error);
+    }
+  };
+
+  //  Buy Now: Add to cart in backend, then go to buy-now page
+  const handleBuyNow = async () => {
+    try {
+      await axios.post("http://localhost:3000/cart", {
+        productId: product._id,
+        productName: product.name,
+        quantity: 1,
+        price: product.price,
+        email: userEmail,
+      });
+
+      console.log("🛒 Added to cart for Buy Now. Navigating to checkout...");
+      navigate('/buy-now', { state: { product } });
+    } catch (error) {
+      console.error(" Error during Buy Now:", error);
     }
   };
 
@@ -29,16 +49,10 @@ function ProductCard({ product, addToCart, buyNow }) {
       <div className="card-body">
         <h5 className="card-title">{product.name}</h5>
         <p className="card-text">${product.price}</p>
-        <button 
-          className="btn btn-primary" 
-          onClick={handleAddToCart}
-        >
+        <button className="btn btn-primary" onClick={handleAddToCart}>
           Add to Cart
         </button>
-        <button 
-          className="btn btn-success ml-2" 
-          onClick={() => buyNow(product)}
-        >
+        <button className="btn btn-success ml-2" onClick={handleBuyNow}>
           Buy Now
         </button>
       </div>
