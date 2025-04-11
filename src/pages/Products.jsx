@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function Products() {
   const location = useLocation();
+  const navigate = useNavigate();
   const selectedCategory = location.state?.category || null;
 
   const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
 
   useEffect(() => {
     const allProducts = [
@@ -17,12 +19,22 @@ function Products() {
       { id: 5, productName: "Dress 5", price: 1299, image: "https://via.placeholder.com/250", category: "Women" },
     ];
 
-    if (selectedCategory === "Women") {
-      setProducts(allProducts.filter(p => p.category === "Women"));
-    } else {
-      setProducts(allProducts);
+    let filtered = selectedCategory
+      ? allProducts.filter(p => p.category === selectedCategory)
+      : allProducts;
+
+    const searchParams = new URLSearchParams(location.search);
+    const keyword = searchParams.get('search')?.toLowerCase();
+
+    if (keyword) {
+      filtered = filtered.filter(p =>
+        p.productName.toLowerCase().includes(keyword)
+      );
     }
-  }, [selectedCategory]);
+
+    setProducts(filtered);
+    setFilteredProducts(filtered);
+  }, [location.search, selectedCategory]);
 
   const handleAddToCart = async (product) => {
     const email = localStorage.getItem("userEmail");
@@ -59,9 +71,8 @@ function Products() {
       return alert("Invalid quantity.");
     }
 
-    const total = product.price * quantity;
-    alert(`Proceeding to buy ${quantity} × ${product.productName} for ₹${total}`);
-    // You can implement further checkout logic here
+    const productWithQuantity = { ...product, quantity };
+    navigate("/buy-now", { state: { product: productWithQuantity } });
   };
 
   return (
@@ -70,36 +81,42 @@ function Products() {
         {selectedCategory ? `${selectedCategory} Products` : "All Products"}
       </h2>
       <div className="row">
-        {products.map((product) => (
-          <div className="col-md-4 mb-4" key={product.id}>
-            <div className="card h-100 shadow-sm">
-              <img
-                src={product.image}
-                className="card-img-top"
-                alt={product.productName}
-                style={{ height: "250px", objectFit: "cover" }}
-              />
-              <div className="card-body d-flex flex-column">
-                <h5 className="card-title">{product.productName}</h5>
-                <p className="card-text">₹{product.price}</p>
-                <div className="mt-auto d-grid gap-2">
-                  <button
-                    className="btn btn-outline-primary"
-                    onClick={() => handleAddToCart(product)}
-                  >
-                    Add to Cart
-                  </button>
-                  <button
-                    className="btn btn-danger"
-                    onClick={() => handleBuyNow(product)}
-                  >
-                    Buy Now
-                  </button>
+        {filteredProducts.length > 0 ? (
+          filteredProducts.map((product) => (
+            <div className="col-md-4 mb-4" key={product.id}>
+              <div className="card h-100 shadow-sm">
+                <img
+                  src={product.image}
+                  className="card-img-top"
+                  alt={product.productName}
+                  style={{ height: "250px", objectFit: "cover" }}
+                />
+                <div className="card-body d-flex flex-column">
+                  <h5 className="card-title">{product.productName}</h5>
+                  <p className="card-text">₹{product.price}</p>
+                  <div className="mt-auto d-grid gap-2">
+                    <button
+                      className="btn btn-outline-primary"
+                      onClick={() => handleAddToCart(product)}
+                    >
+                      Add to Cart
+                    </button>
+                    <button
+                      className="btn btn-danger"
+                      onClick={() => handleBuyNow(product)}
+                    >
+                      Buy Now
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
+          ))
+        ) : (
+          <div className="text-center mt-5">
+            <h4>No products found.</h4>
           </div>
-        ))}
+        )}
       </div>
     </div>
   );
