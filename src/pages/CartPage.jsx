@@ -2,20 +2,23 @@ import React, { useEffect, useState } from "react";
 import "./Cart.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function CartPage() {
   const [cartItems, setCartItems] = useState([]);
   const [total, setTotal] = useState(0);
-  const userEmail = localStorage.getItem("userEmail");
+  const userEmail = localStorage.getItem("userEmail")?.toLowerCase();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    fetchCart(); // Fetch the cart when the component mounts
-  }, []);
+    if (userEmail) {
+      fetchCart();
+    }
+  }, [userEmail]);
 
   const fetchCart = async () => {
     try {
-      const res = await axios.get(`http://localhost:3000/cart/${userEmail}`);
+      const res = await axios.get(`http://localhost:3000/api/cart/${userEmail}`);
       setCartItems(res.data);
       calculateTotal(res.data);
     } catch (error) {
@@ -33,8 +36,8 @@ function CartPage() {
 
   const removeFromCart = async (productId) => {
     try {
-      await axios.delete(`http://localhost:3000/cart/${userEmail}/${_Id}`);
-      const updatedItems = cartItems.filter(item => item._Id !== _Id);
+      await axios.delete(`http://localhost:3000/api/cart/${userEmail}/${productId}`);
+      const updatedItems = cartItems.filter(item => item._id !== productId);
       setCartItems(updatedItems);
       calculateTotal(updatedItems);
     } catch (error) {
@@ -43,18 +46,39 @@ function CartPage() {
   };
 
   const clearCart = async () => {
+    if (!userEmail) {
+      alert("User email not found. Please log in again.");
+      return;
+    }
+
     try {
-      await axios.delete(`http://localhost:3000/cart/clear/${userEmail}`);
-      setCartItems([]);
-      setTotal(0);
+      const confirmClear = window.confirm("Are you sure you want to clear the entire cart?");
+      if (!confirmClear) return;
+
+      const res = await axios.delete(`http://localhost:3000/api/cart/clear/${userEmail}`);
+      
+      console.log("Clear cart response:", res);
+
+      if (res.status === 200) {
+        setCartItems([]);
+        setTotal(0);
+        alert(res.data.message || "Cart cleared successfully");
+      } else {
+        alert("Something went wrong while clearing the cart.");
+      }
     } catch (error) {
       console.error("Error clearing cart:", error);
+      alert("An error occurred while clearing the cart. Please try again.");
     }
   };
 
   const handleBuyNow = () => {
-    alert(`Proceeding to buy items for total ₹${total}`);
-    // Add checkout logic here
+    if (cartItems.length === 0) {
+      alert("Your cart is empty!");
+      return;
+    }
+
+    navigate('/buy-now', { state: { cartItems } });
   };
 
   return (
@@ -87,7 +111,7 @@ function CartPage() {
                       className="btn btn-danger"
                       onClick={() => {
                         if (window.confirm("Are you sure you want to remove this item?")) {
-                          removeFromCart(item._Id);
+                          removeFromCart(item._id);
                         }
                       }}
                     >
